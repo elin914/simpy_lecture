@@ -22,7 +22,7 @@ class Source:
             print(part.id, 'is created at', self.env.now)
             yield self.env.process(self.to_next_process(part))
 
-            IAT = self.IAT
+            IAT = self.IAT # ??
             yield self.env.timeout(IAT)
 
     def to_next_process(self, part):

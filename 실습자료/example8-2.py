@@ -4,7 +4,7 @@ class Part:
     def __init__(self, id, enter_time):
         self.id = id
         self.enter_time = enter_time
-        self.exit_time = 0
+        self.exit_time = 0 # ?
         self.step = 0
         self.process_list = ['process1', 'process2', 'sink']
 

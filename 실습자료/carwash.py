@@ -4,7 +4,9 @@ class Carwash():
     def __init__(self, env, n, washtime):
         self.env = env
         self.machines = simpy.Resource(self.env, capacity=n)
-
+        # self.machines = simpy.Store(self.env, capacity=n)
+        # for i in range(n):
+        #     self.machines.put('machine'+str(i))
         self.washtime = washtime
 
     def wash(self, car):
@@ -21,6 +23,12 @@ def car(env, carname, carwash):
         yield env.process(carwash.wash(carname))
 
         print("{0} leaves the machine at".format(carname), env.now)
+
+    # machine = yield carwash.machines.get()
+    # print("{0} enters the cleaning machine at".format(carname), env.now)
+    # yield env.process(carwash.wash(carname))
+    # yield carwash.machines.put(machine)
+    # print("{0} leaves the machine at".format(carname), env.now)
 
 def setup(env, n, IAT, washtime):
     carwash = Carwash(env, n, washtime)
@@ -43,4 +51,4 @@ washtime = 5
 
 env.process(setup(env, num_machines, IAT, washtime))
 
-env.run(until=60)
+env.run(until=20)
